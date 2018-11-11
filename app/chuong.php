@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class chuong extends Model
 {
-    protected $table="cauhoi";
+    protected $table="chuong";
     protected $fillable=['id','tenChuong','idMH'];
      public $timestamps=false;
      public function monhoc()
