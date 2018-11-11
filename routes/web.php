@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('themcauhoi',['as'=>'themcauhoi','uses'=>'PagesController@getthemcauhoi']);
+Route::post('themcauhoi/{id}',['as'=>'themcauhoi','uses'=>'PagesController@postthemcauhoi']);
