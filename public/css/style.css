@@ -244,6 +244,8 @@ body{
     margin-top: 33px;
 }
 
+
+
 .menu1{
     height: 60px;
 }
@@ -275,9 +277,12 @@ body{
    height: 30px;
 
 }
-.formthemch .nut{
-    width: 100px;
-    margin-top:20px;
+.nut{
+       position: absolute;
+    width: 200px;
+    top: 510px;
+    /* color: #FEC722; */
+    background: #FEC722;
 }
 .formthemch .dokho{
 
@@ -324,9 +329,9 @@ body{
     height: 600px;
 }
 .tabcontent1 {
-    display: none;
-    padding: 6px 12px;
 
+    padding: 6px 12px;
+    display: none;;
     
     float: left;
     height: 600px;
@@ -365,12 +370,13 @@ body{
     transition: 0.3s;
     font-size: 17px;
     display: block;
-
+    text-align: left;
 }
 
 .main1{
     border: 1px solid #ccc;
     border-top: none;
+    
 }
 
 table {
@@ -425,6 +431,115 @@ tr:nth-child(even) {
     height: 600px;
     overflow:scroll;
 }
+.tabcontent1{
+    height: 600px;
+    overflow:scroll;
+}
 .tabcontent2 li{
     margin-top:5px;
+}
+.button{
+    position: absolute;
+    border:none;
+    background: transparent;
+
+}
+.display-left{
+    top: 17%;
+    
+    
+}
+.display-right{
+    top: 17%;
+    left: 98%;
+}
+
+.hinh{
+    height: 560px;
+    width: 100%;
+}
+
+.img-responsive{
+    width: 480px;
+}
+footer{
+    margin-top: 20px;
+    background: linear-gradient(rgba(85, 85, 85, 0.1), rgba(85, 85, 85, 0.1)), url(../img/footer-bg.png);
+    background-repeat: repeat;
+    clear: both;
+    height: 400px;
+}
+.leftf{
+        margin-top: 70px;
+    font-size: 16px;
+}
+.rightf{
+        margin-top: 70px;
+    font-size: 16px;
+}
+.centerf{
+           margin-top: 70px;
+    font-size: 16px;
+}
+.btn-subscriber{
+    position: absolute;
+    top: -35%;
+}
+.input-group{
+    margin-top:30px;
+}
+.copyRight h5{
+    font-size:16px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.tabs-heading{
+    padding: 20px 20px 0px 20px;
+    height: 30px;
+    border: solid 1px gray;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #cae8fd;
+}
+.tabs-heading a{
+    display: inline-block;
+    padding: 0px 20px;
+    height: 30px;
+    line-height: 30px;
+    z-index: 1;
+    color: blue;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.tabs-heading a.active{
+    height: 30px;
+    border: solid 1px gray;
+    border-bottom: none;
+    background-color: #FFF;
+}
+.tabs-content{
+    border: solid 1px gray;
+    border-top: none;
+    min-height: 200px;
+    padding: 10px;
+}
+
+.combobox1 {
+    float: left;
+    width: 200px;
+    margin-top: 20px;
+}
+
+.thongtin{
+    position: absolute;
+    background: white;
+    padding: 5px;
+    border: solid 1px #F1F1F1;
+    z-index: 1;
+}
+.thongtin input{
+    width: 550px;
+}
+.cauhoi{
+    z-index: 1;
 }
