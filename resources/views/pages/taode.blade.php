@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Ngân hàng câu hỏi</title>
+	<title>Document</title>
 	<base href="<?php echo asset('') ?>">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -56,22 +56,17 @@
 	<div class="menu1">
 		<ul>
 			<li><a href="index.html">Trang chủ</a></li>
-			<li><a class="active" href="#">Ngân hàng câu hỏi</a></li>
-			<li><a  href="http://localhost:8080/nganhang/public/themcauhoi">Tạo câu hỏi</a></li>
+			<li><a class="active" href="nganhangcauhoi.html">Ngân hàng câu hỏi</a></li>
+			<li><a  href="themcauhoi.html">Tạo câu hỏi</a></li>
 			<li><a href="taode.html">Tạo đề và trộn đề</a></li>
 			<li><a href="nganhangde.html">Ngân hàng đề thi</a></li>
 		</ul>
 	</div>
-
-	@if (session('success'))
-	<div class="alert alert-success">
-		<p>{{ session('success') }}</p>
-	</div>
-	@endif
-
+	
+	
 	<div class="tab">
 		@foreach($nganh as $new)
-		<button class="tablinks" onclick="chonnganh(event, '{{$new -> tenNganh}}')">{{$new ->tenNganh}}</button>
+		<button class="tablinks" onclick="chonnganh(event, '{{$new->tenNganh}}')">{{$new->tenNganh}}</button>
 		@endforeach
 	</div>
 
@@ -84,7 +79,7 @@
 				<div id="{{$new->tenNganh}}" class="tabcontent">
 					<div class="tab1">
 						@foreach($monhoc as $new1)
-						@if($new1->idNganh == $new->idNganh)
+						@if($new->idNganh == $new1->idNganh)
 						<button class="tablinks1" onclick="chonmon(event, '{{$new1->tenMH}}')">{{$new1->tenMH}}</button>
 						@endif
 						@endforeach
@@ -92,95 +87,147 @@
 				</div>
 				@endforeach
 
+
 				
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-10">
 				@foreach($monhoc as $new1)
 				<div id="{{$new1->tenMH}}" class="tabcontent1">
-					<div class="tab1">
-						@foreach($chuong as $new2)
-						@if($new1->idMH == $new2->idMH)
-						<button class="tablinks2" onclick="chonchuong(event, '{{$new2->idChuong}}')">{{$new2->tenChuong}}</button>
-						@endif
-						@endforeach
+					<div class="alert alert-success thongbao">
+						<h5>Thành công</h5>
 					</div>
-				</div>
-				@endforeach
+					<div class="alert alert-danger thongbao">
+						<h5>Thất bại</h5>
+					</div>
+					<table>
+						<tr>
+							<td>
+								Chương
+							</td>
+							<td>
+								Số câu hỏi dễ
+							</td>
+							<td>
+								Số câu hỏi trung bình
+							</td>
+							<td>
+								Số câu hỏi khó
+							</td>
+						</tr>
+						@foreach($chuong as $new2)
 
-			</div>
-			<div class="col-md-6">
-				
-				@foreach($chuong as $new2)
-				<div id="{{$new2->idChuong}}" class="tabcontent2">
-					<ul>
-						@foreach($cauhoi as $new3)
-						@if($new3->idChuong == $new2->idChuong)
-					
-						<li>
-							<div class="cauhoi">
-								<div class="row">
-									<div class="col-md-9">
-										<span>Nội dung câu hỏi: {{$new3->noiDungCH}}</span>
-										<br>
-										<span>A: {{$new3->ansA}}</span>
-										<br>
-										<span>B: {{$new3->ansB}}</span>
-										<br>
-										<span>C: {{$new3->ansC}}</span>
-										<br>
-										<span>D: {{$new3->ansD}}</span>
-										<br>
-										<span>Đáp án: {{$new3->dapAn}}</span>
-									</div>
-									<div class="col-md-3">
-										<button id="btn1{{$new3->idCH}}">Sửa</button>
-										<button id="btn2{{$new3->idCH}}">Xoá</button>
+						@if($new2->idMH == $new1->idMH)
+						
+						<tr>
+							<td>
+								{{$new2->tenChuong}}
+							</td>
+							
+							<td>
+								<?php $i=0 ?>
+								@foreach($cauhoi as $ch)
+								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 1)
+								<?php $i++; 
 
-									</div>
-									<div id="t{{$new3->idCH}}" class="thongtin" style="display: none;">
-										<button id="btn3{{$new3->idCH}}" style="float: right;">X</button>
-										<h3>Sửa thông tin</h3>
-										<form action="" method="post">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<input type="text" value="{{$new3->idCH}}" name="idCH"><br>
-											<input type="text" value="{{$new3->noiDungCH}}" name="noidung"><br>
-											A:<br>
-											<input type="text" value="{{$new3->ansA}}" name="A"><br>
-											B:<br>
-											<input type="text" value="{{$new3->ansB}}" name="B"><br>
-											C:<br>
-											<input type="text" value="{{$new3->ansC}}" name="C"><br>
-											D:<br>
-											<input type="text" value="{{$new3->ansD}}" name="D"><br>
-											Đáp án:<br>
-											<input type="text" value="{{$new3->dapAn}}" name="dapan" ><br>
-											<input type="submit" value="Lưu" class="btn" style="width: 200px;">
-										</form>
-										
-									</div>
+								?> 
+								@endif
+								@endforeach
 
-									<div id="x{{$new3->idCH}}" class="thongtin" style="display: none;">
-										<button id="btn4{{$new3->idCH}}" style="float: right;">X</button>
-										<h3>Xoá câu hỏi</h3>
-										<form action="{{route('xoacauhoi')}}" method="post">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<input type="text" value="{{$new3->idCH}}" name="idCH"><br>
-											<span>Bạn có muốn xoá câu hỏi này</span>
-											<input type="submit" value="Xoá" class="btn" style="width: 200px;">
-										</form>
-										
-									</div>
+								<?php echo $i ?>
 
-								</div>
-							</div>
-						</li>
+							</td>
+							<td>
+								<?php $j=0 ?>
+								@foreach($cauhoi as $ch)
+								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 2)
+								<?php $j++; 
+
+								?> 
+								@endif
+								@endforeach
+
+								<?php echo $j ?>
+							</td>
+							<td>
+								<?php $k=0 ?>
+								@foreach($cauhoi as $ch)
+								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 3)
+								<?php $k++; 
+
+								?> 
+								@endif
+								@endforeach
+
+								
+							</td>
+							
+						</tr>
+						
 						@endif
+						
 						@endforeach
+					</table>
+					
+					<br>
+					<span>Chọn số lượng câu hỏi trong từng chương</span>
+					<br>
+					<form action="{{route('taode')}}" method="post">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<table>
+							<tr>
+								<td>
+									Chương
+								</td>
+								<td>
+									Số câu hỏi dễ
+								</td>
+								<td>
+									Số câu hỏi trung bình
+								</td>
+								<td>
+									Số câu hỏi khó
+								</td>
+							</tr>
+							@foreach($chuong as $new3)
+							@if($new1->idChuong == $new3->idChuong)
+							<tr>
+								<td>
+									Chương 1
+								</td>
+								<td>
+									<input type="text" name="">
+								</td>
+								<td>
+									<input type="text" name="">
+								</td>
+								<td>
+									<input type="text" name="">
+								</td>
+							</tr>
+							@endif
+							@endforeach
+							<input type="text" name="mh" value="{{$new1->idMH}}">
+						</table>
+						<label for="">Nhập mã đề</label>
+						<input type="text" name="made">
+						<label for="">Số đề hoán vị cần tạo</label>
+						<input type="text">
+						<label for="">Chọn số câu hỏi</label>
+						<select name="socau" size="2" class="sl" multiple>
+							<option value="20">20</option>
+							<option value="25">30</option>
+							<option value="30">40</option>
+							<option value="40">50</option>
+						</select>
+						<input type="submit" value="Tạo đề" class="btn">
+					</form>
 
-					</ul>
+
 				</div>
 				@endforeach
+
 			</div>
+
 		</div>
 	</div>
 	<footer>
@@ -222,27 +269,7 @@
 			</div>
 		</div>
 	</footer>
-	
-	<script language="javascript">
-		@foreach($cauhoi as $new3)
-		document.getElementById("btn3{{$new3->idCH}}").onclick = function () {
-			document.getElementById("t{{$new3->idCH}}").style.display = 'none';
-		};
-		
-		document.getElementById("btn1{{$new3->idCH}}").onclick = function () {
-			document.getElementById("t{{$new3->idCH}}").style.display = 'block';
-		};
 
-		document.getElementById("btn4{{$new3->idCH}}").onclick = function () {
-			document.getElementById("x{{$new3->idCH}}").style.display = 'none';
-		};
-		
-		document.getElementById("btn2{{$new3->idCH}}").onclick = function () {
-			document.getElementById("x{{$new3->idCH}}").style.display = 'block';
-		};
-		@endforeach
-		
-	</script>
 
 	<script>
 		function chonnganh(evt, cityName) {

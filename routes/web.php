@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::get('themcauhoi',['as'=>'themcauhoi','uses'=>'PagesController@getthemcauhoi']);
 Route::post('themcauhoi',['as'=>'themcauhoi','uses'=>'PagesController@postthemcauhoi']);
 Route::get('nganhangcauhoi',['as'=>'nganhangcauhoi','uses'=>'PagesController@getnganhangcauhoi']);
-Route::post('nganhangcuahoi',['as'=>'editcauhoi','uses'=>'PagesController@posteditcauhoi']);
+//Route::post('nganhangcuahoi',['as'=>'suacauhoi','uses'=>'PagesController@posteditcauhoi']);
+Route::post('nganhangcuahoi',['as'=>'xoacauhoi','uses'=>'PagesController@postxoacauhoi']);
+Route::get('taode',['as'=>'taode','uses'=>'PagesController@gettaode']);
+Route::post('taode',['as'=>'taode','uses'=>'PagesController@posttaode']);
+Route::get('de',['as'=>'de','uses'=>'PagesController@getde']);
