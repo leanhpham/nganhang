@@ -23,3 +23,4 @@ Route::post('nganhangcauhoi1',['as'=>'xoacauhoi','uses'=>'PagesController@postxo
 Route::get('taode',['as'=>'taode','uses'=>'PagesController@gettaode']);
 Route::post('taode',['as'=>'taode','uses'=>'PagesController@posttaode']);
 Route::get('de/{id}',['as'=>'de','uses'=>'PagesController@getde']);
+Route::get('nganhangdethi',['as'=>'de','uses'=>'PagesController@getnganhangdethi']);

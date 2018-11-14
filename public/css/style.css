@@ -543,3 +543,17 @@ footer{
 .cauhoi{
     z-index: 1;
 }
+
+.header_left{
+    text-align: center;
+    font-size:18px;
+    border-bottom: solid black 1px;
+    padding-bottom:5px;
+}
+.header_right{
+    text-align: center;
+    font-size:18px;
+    
+    padding-bottom:5px;
+}
+.td{margin-top:20px;margin-bottom:20px;}

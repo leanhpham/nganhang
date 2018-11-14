@@ -56,10 +56,10 @@
 	<div class="menu1">
 		<ul>
 			<li><a href="index.html">Trang chủ</a></li>
-			<li><a class="active" href="nganhangcauhoi.html">Ngân hàng câu hỏi</a></li>
-			<li><a  href="themcauhoi.html">Tạo câu hỏi</a></li>
-			<li><a href="taode.html">Tạo đề và trộn đề</a></li>
-			<li><a href="nganhangde.html">Ngân hàng đề thi</a></li>
+			<li><a href="http://localhost:8080/nganhang/public/nganhangcauhoi">Ngân hàng câu hỏi</a></li>
+			<li><a  href="http://localhost:8080/nganhang/public/themcauhoi">Tạo câu hỏi</a></li>
+			<li><a class="active"  href="http://localhost:8080/nganhang/public/taode">Tạo đề và trộn đề</a></li>
+			<li><a href="http://localhost:8080/nganhang/public/nganhangdethi">Ngân hàng đề thi</a></li>
 		</ul>
 	</div>
 	
@@ -93,12 +93,6 @@
 			<div class="col-md-10">
 				@foreach($monhoc as $new1)
 				<div id="{{$new1->tenMH}}" class="tabcontent1">
-					<div class="alert alert-success thongbao">
-						<h5>Thành công</h5>
-					</div>
-					<div class="alert alert-danger thongbao">
-						<h5>Thất bại</h5>
-					</div>
 					<table>
 						<tr>
 							<td>
@@ -158,7 +152,7 @@
 								@endif
 								@endforeach
 
-								
+								<?php echo $k ?>
 							</td>
 							
 						</tr>
@@ -189,10 +183,10 @@
 								</td>
 							</tr>
 							@foreach($chuong as $new3)
-							@if($new1->idChuong == $new3->idChuong)
+							@if($new1->idMH == $new3->idMH)
 							<tr>
 								<td>
-									Chương 1
+									{{$new3->tenChuong}}
 								</td>
 								<td>
 									<input type="text" name="">
@@ -206,73 +200,74 @@
 							</tr>
 							@endif
 							@endforeach
-							<input type="text" name="mh" value="{{$new1->idMH}}">
+							<input type="text" name="mh" value="{{$new1->idMH}}" style="display: none;">
 						</table>
 						<label for="">Nhập mã đề</label>
-						<input type="text" name="made">
-						<label for="">Số đề hoán vị cần tạo</label>
+						<input type="text" name="made"><br>
+						<!--<label for="">Số đề hoán vị cần tạo</label>
 						<input type="text">
-						<label for="">Chọn số câu hỏi</label>
-						<select name="socau" size="2" class="sl" multiple>
-							<option value="20">20</option>
-							<option value="30">30</option>
-							<option value="40">40</option>
-							<option value="50">50</option>
-						</select>
-						<input type="submit" value="Tạo đề" class="btn">
-					</form>
+					-->
+					<label for="">Chọn số câu hỏi</label>
+					<select name="socau" size="2" class="sl" multiple>
+						<option value="20">20</option>
+						<option value="30">30</option>
+						<option value="40">40</option>
+						<option value="50">50</option>
+					</select>
+					<input type="submit" value="Tạo đề" class="btn">
+				</form>
 
-
-				</div>
-				@endforeach
 
 			</div>
+			@endforeach
 
+		</div>
+
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 leftf">
+				<h3>Về chúng tôi</h3>
+				<li>Liên hệ</li>
+				<li>Giới thiệu</li>
+			</div>
+			<div class="col-md-4 centerf">
+				<h3>Điều khoản sử dụng</h3>
+				<ul>
+					<li>Điều khoản sử dụng</li>
+					<li>Điều khoản chung</li>
+					<li>Chính sách bảo mật</li>
+					<li>Câu hỏi thường gặp</li>
+				</ul>
+			</div>
+			<div class="col-md-4 rightf">
+				<h3>Chăm sóc khách hàng</h3>
+				<ul>
+					<li>Hotline : xx24144</li>
+					<li>Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết)</li>
+					<li>Email hỗ trợ: sd-asd-@gmail.com</li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 leftf">
-					<h3>Về chúng tôi</h3>
-					<li>Liên hệ</li>
-					<li>Giới thiệu</li>
-				</div>
-				<div class="col-md-4 centerf">
-					<h3>Điều khoản sử dụng</h3>
-					<ul>
-						<li>Điều khoản sử dụng</li>
-						<li>Điều khoản chung</li>
-						<li>Chính sách bảo mật</li>
-						<li>Câu hỏi thường gặp</li>
-					</ul>
-				</div>
-				<div class="col-md-4 rightf">
-					<h3>Chăm sóc khách hàng</h3>
-					<ul>
-						<li>Hotline : xx24144</li>
-						<li>Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết)</li>
-						<li>Email hỗ trợ: sd-asd-@gmail.com</li>
-					</ul>
-				</div>
+	<div class="container">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Enter Your Email" aria-label="Recipient's username">
+			<div class="input-group-append">
+				<button class="btn btn-subscriber" type="submit"> <i class="far fa-paper-plane"></i> </button>
 			</div>
 		</div>
-		<div class="container">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Your Email" aria-label="Recipient's username">
-				<div class="input-group-append">
-					<button class="btn btn-subscriber" type="submit"> <i class="far fa-paper-plane"></i> </button>
-				</div>
-			</div>
-			<div class="copyRight">	
-				<h5>© 2018 H.A.H Team</h5>
-			</div>
+		<div class="copyRight">	
+			<h5>© 2018 H.A.H Team</h5>
 		</div>
-	</footer>
+	</div>
+</footer>
 
 
-	<script>
-		function chonnganh(evt, cityName) {
+<script>
+	function chonnganh(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks,tabcontent1;
 
