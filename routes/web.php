@@ -11,11 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('admin', function () {
+    return view('signIn');
 });
 
-Route::get('themcauhoi',['as'=>'themcauhoi','uses'=>'PagesController@getthemcauhoi']);
-Route::post('themcauhoi',['as'=>'themcauhoi','uses'=>'PagesController@postthemcauhoi']);
-Route::get('nganhangcauhoi',['as'=>'nganhangcauhoi','uses'=>'PagesController@getnganhangcauhoi']);
-Route::post('nganhangcuahoi',['as'=>'editcauhoi','uses'=>'PagesController@posteditcauhoi']);
+
+Route::post('logInAD',['as'=>'logInAD','uses'=>'MyController@login_AD']);
+Auth::routes();
+
+
+
+/* QL NHAN VIEN  */
+
+Route::post('addGV',['as'=>'addGV','uses'=>'MyController@themgiangvien']);
+Route::get('listGV','MyController@getList' );
+Route::get('deleteGV/{id}','MyController@deleteGV');
+Route::post('editGV/{id}','MyController@suagiangvien');
+
+/* END QL NHAN VIEN*/

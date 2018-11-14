@@ -18,4 +18,3 @@ class cauhoi extends Model
      	return $this->hasMany('App\chitietdethi','idCH','id');
      }
 }
-
