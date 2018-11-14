@@ -171,14 +171,14 @@
 						@endif
 						
 						@endforeach
-					
+
 
 					</table>
 					
 					<br>
 					<span>Chọn số lượng câu hỏi trong môn</span>
 					<br>
-					<form action="{{route('taode')}}" method="post">
+					<form action="{{route('tdtch')}}" method="post">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<table>
 							<tr>
@@ -202,13 +202,13 @@
 									{{$new1->tenMH}}
 								</td>
 								<td>
-									<input type="text" name="">
+									<input type="text" name="a">
 								</td>
 								<td>
-									<input type="text" name="">
+									<input type="text" name="b">
 								</td>
 								<td>
-									<input type="text" name="">
+									<input type="text" name="c">
 								</td>
 							</tr>
 							

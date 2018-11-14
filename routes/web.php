@@ -27,3 +27,5 @@ Route::get('nganhangdethi',['as'=>'de','uses'=>'PagesController@getnganhangdethi
 Route::get('login',['as'=>'login','uses'=>'PagesController@getlogin']);
 Route::post('login',['as'=>'login','uses'=>'PagesController@postlogin']);
 Route::get('logout',['as'=>'logout','uses'=>'PagesController@postlogout']);
+Route::get('taodetheocauhoi',['as'=>'taodetheocauhoi','uses'=>'PagesController@gettaodetch']);
+Route::post('taodetheocauhoi',['as'=>'tdtch','uses'=>'PagesController@posttaodetch']);
