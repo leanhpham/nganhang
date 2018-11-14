@@ -113,13 +113,16 @@
 								Môn
 							</td>
 							<td>
-								Số câu hỏi dễ
+								Số câu trả lời A
 							</td>
 							<td>
-								Số câu hỏi trung bình
+								Số câu trả lời B
 							</td>
 							<td>
-								Số câu hỏi khó
+								Số câu trả lời C
+							</td>
+							<td>
+								Số câu trả lời D
 							</td>
 						</tr>
 						@foreach($chuong as $new2)
@@ -134,7 +137,7 @@
 							<td>
 								<?php $i=0 ?>
 								@foreach($cauhoi as $ch)
-								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 1)
+								@if($ch->idChuong == $new2->idChuong && $ch->dapAn == 'A')
 								<?php $i++; 
 
 								?> 
@@ -147,7 +150,7 @@
 							<td>
 								<?php $j=0 ?>
 								@foreach($cauhoi as $ch)
-								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 2)
+								@if($ch->idChuong == $new2->idChuong && $ch->dapAn == 'B')
 								<?php $j++; 
 
 								?> 
@@ -159,7 +162,19 @@
 							<td>
 								<?php $k=0 ?>
 								@foreach($cauhoi as $ch)
-								@if($ch->idChuong == $new2->idChuong && $ch->doKho == 3)
+								@if($ch->idChuong == $new2->idChuong && $ch->dapAn == 'C')
+								<?php $k++; 
+
+								?> 
+								@endif
+								@endforeach
+
+								<?php echo $k ?>
+							</td>
+							<td>
+								<?php $k=0 ?>
+								@foreach($cauhoi as $ch)
+								@if($ch->idChuong == $new2->idChuong && $ch->dapAn == 'D')
 								<?php $k++; 
 
 								?> 
@@ -181,7 +196,7 @@
 					<br>
 					<span>Chọn số lượng câu hỏi trong môn</span>
 					<br>
-					<form action="{{route('tdtch')}}" method="post">
+					<form action="{{route('tdttl')}}" method="post">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<table>
 							<tr>
@@ -189,13 +204,16 @@
 									Chương
 								</td>
 								<td>
-									Số câu hỏi dễ
+									Số câu trả lời A
 								</td>
 								<td>
-									Số câu hỏi trung bình
+									Số câu trả lời B
 								</td>
 								<td>
-									Số câu hỏi khó
+									Số câu trả lời C
+								</td>
+								<td>
+									Số câu trả lời D
 								</td>
 							</tr>
 							
@@ -212,6 +230,9 @@
 								</td>
 								<td>
 									<input type="text" name="c">
+								</td>
+								<td>
+									<input type="text" name="d">
 								</td>
 							</tr>
 							

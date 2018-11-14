@@ -178,7 +178,7 @@ public function gettaodetch()
    $monhoc=monhoc::select()->get();
    $chuong=chuong::select()->get();
    $cauhoi=cauhoi::select()->get();
-   return view('pages.taode',compact('nganh','monhoc','chuong','cauhoi','cauhoide','cauhoitb','cauhoikho'));
+   return view('pages.taodetheocauhoi',compact('nganh','monhoc','chuong','cauhoi','cauhoide','cauhoitb','cauhoikho'));
  }
  else
   return redirect('login');
@@ -213,7 +213,7 @@ public function posttaodetch(Request $rq)
     }
   }
 
-  foreach($cauhoi1 as $ch)
+  foreach($cauhoi2 as $ch)
   {
     foreach ($cauhoi5 as $ch4) {
       if($ch->idCH == $ch5->idCH)
@@ -223,7 +223,7 @@ public function posttaodetch(Request $rq)
     }
   }
 
-  foreach($cauhoi1 as $ch)
+  foreach($cauhoi3 as $ch)
   {
     foreach ($cauhoi6 as $ch4) {
       if($ch->idCH == $ch6->idCH)
@@ -232,6 +232,81 @@ public function posttaodetch(Request $rq)
       }
     }
   }
-return redirect()->route('de',[$made]);
+  return redirect()->route('de',[$made]);
+}
+
+public function gettaodetctl()
+{
+ if(Session::has('login') && Session::get('login')==true){
+   $nganh=nganh::select()->get();
+   $monhoc=monhoc::select()->get();
+   $chuong=chuong::select()->get();
+   $cauhoi=cauhoi::select()->get();
+   return view('pages.taodetheocautl',compact('nganh','monhoc','chuong','cauhoi','cauhoide','cauhoitb','cauhoikho'));
+ }
+ else
+  return redirect('login');
+}
+public function posttaodetctl(Request $rq)
+{
+  $chuong=chuong::select('idChuong')->where('idMH',$rq->mh)->get()->toArray();
+  $cauhoi1=cauhoi::select()->whereIn('idChuong',$chuong)->inRandomOrder()->take($rq->a)->get();
+   $cauhoi2=cauhoi::select()->whereIn('idChuong',$chuong)->inRandomOrder()->take($rq->b)->get();
+  $cauhoi3=cauhoi::select()->whereIn('idChuong',$chuong)->inRandomOrder()->take($rq->c)->get();
+   $cauhoi4=cauhoi::select()->whereIn('idChuong',$chuong)->inRandomOrder()->take($rq->d)->get();
+
+  $cauhoi4=cauhoi::select()->where('dapAn','A')->get();
+  $cauhoi5=cauhoi::select()->where('dapAn','B')->get();
+  $cauhoi6=cauhoi::select()->where('dapAn','C')->get();
+  $cauhoi7=cauhoi::select()->where('dapAn','D')->get();
+  
+
+  $dethi=new dethi;
+  $dethi->idDT=$rq->made;
+  $dethi->ngayLap=date('y/m/d');
+  $dethi->soLuong=$rq->socau;
+  $dethi->idMH=$rq->mh;
+  $dethi->save();
+  $made=$rq->made;
+
+  foreach($cauhoi1 as $ch)
+  {
+    foreach ($cauhoi4 as $ch4) {
+      if($ch->idCH == $ch4->idCH)
+      {
+        DB::table('chitietdethi')->insert(['idCH' => $ch->idCH, 'idDT' => $rq->made]);
+      }
+    }
+  }
+
+  foreach($cauhoi2 as $ch)
+  {
+    foreach ($cauhoi5 as $ch4) {
+      if($ch->idCH == $ch5->idCH)
+      {
+        DB::table('chitietdethi')->insert(['idCH' => $ch->idCH, 'idDT' => $rq->made]);
+      }
+    }
+  }
+
+  foreach($cauhoi3 as $ch)
+  {
+    foreach ($cauhoi6 as $ch4) {
+      if($ch->idCH == $ch4->idCH)
+      {
+        DB::table('chitietdethi')->insert(['idCH' => $ch->idCH, 'idDT' => $rq->made]);
+      }
+    }
+  }
+  foreach($cauhoi4 as $ch)
+  {
+    foreach ($cauhoi7 as $ch4) {
+      if($ch->idCH == $ch4->idCH)
+      {
+        DB::table('chitietdethi')->insert(['idCH' => $ch->idCH, 'idDT' => $rq->made]);
+      }
+    }
+  }
+  return redirect()->route('de',[$made]);
 }
 }
