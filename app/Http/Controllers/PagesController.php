@@ -9,17 +9,59 @@ use App\chuong;
 use App\monhoc;
 use App\nganh;
 use App\dethi;
+use App\taikhoan;
+use App\giangvien;
+use Session;
 
 use DB;
 
 class PagesController extends Controller
 {
+    public function postlogin(Request $rq)
+    {
+        $tenTK=$rq->username;
+        $matKhau=$rq->password;
+    // $this->validate($rq,[
+    //     'username'=>'require|min:3|max:20',
+    //     'password'=>'require|min:3|max:50'
+    //   ],[
+    //     'username.min'=>'Nhap kho duoc it hon 3 ky tu',
+    //     'password.max'=>'Nhap khong qua 20 ky tu',
+    //   ]);
+        $user=taikhoan::where('tenTK',$tenTK)->first();
+        if($user!=null)
+        {
+            $pass=taikhoan::where('tenTK',$tenTK)->select()->first();
+            if($pass->matKhau==$matKhau)
+            {
+                Session()->put('login',true);
+                Session()->put('name',$tenTK);
+                return redirect()->route('nganhangcauhoi');
+            }
+            else{
+
+                echo 0;
+            }
+        }
+        else 
+            echo 2;
+    }
+    public function postLogout(Request $rq)
+    {
+        Session()->put('login',false);
+        $rq->Session()->flush();
+        return redirect('login');
+    }
     public function getthemcauhoi()
     {
-        $nganh=nganh::select()->get();
-        $monhoc=monhoc::select()->get();
-        $chuong=chuong::select()->get();
-        return view('pages.themcauhoi',compact('nganh','monhoc','chuong'));
+        if(Session::has('login') && Session::get('login')==true){
+            $nganh=nganh::select()->get();
+            $monhoc=monhoc::select()->get();
+            $chuong=chuong::select()->get();
+            return view('pages.themcauhoi',compact('nganh','monhoc','chuong'));
+        }
+        else
+            return redirect('login');
 
     }
 
@@ -39,11 +81,15 @@ class PagesController extends Controller
     }
     public function getnganhangcauhoi()
     {
-        $nganh=nganh::select()->get();
-        $monhoc=monhoc::select()->get();
-        $chuong=chuong::select()->get();
-        $cauhoi=cauhoi::select()->get();
-        return view('pages.nganhangcauhoi',compact('nganh','monhoc','chuong','cauhoi'));
+        if(Session::has('login') && Session::get('login')==true){
+            $nganh=nganh::select()->get();
+            $monhoc=monhoc::select()->get();
+            $chuong=chuong::select()->get();
+            $cauhoi=cauhoi::select()->get();
+            return view('pages.nganhangcauhoi',compact('nganh','monhoc','chuong','cauhoi'));
+        }
+        else
+            return redirect('login');
     }
     public function posteditcauhoi(Request $rq)
     {
@@ -63,21 +109,19 @@ class PagesController extends Controller
   public function gettaode()
 
   {
-     $nganh=nganh::select()->get();
-     $monhoc=monhoc::select()->get();
-     $chuong=chuong::select()->get();
-     $cauhoi=cauhoi::select()->get();
+     if(Session::has('login') && Session::get('login')==true){
+         $nganh=nganh::select()->get();
+         $monhoc=monhoc::select()->get();
+         $chuong=chuong::select()->get();
+         $cauhoi=cauhoi::select()->get();
+         return view('pages.taode',compact('nganh','monhoc','chuong','cauhoi','cauhoide','cauhoitb','cauhoikho'));
+     }
+     else
+        return redirect('login');
+}
 
-
-
-
-
-
-     return view('pages.taode',compact('nganh','monhoc','chuong','cauhoi','cauhoide','cauhoitb','cauhoikho'));
- }
-
- public function posttaode(Request $rq)
- { 
+public function posttaode(Request $rq)
+{ 
 
 
    $chuong=chuong::select('idChuong')->where('idMH',$rq->mh)->get()->toArray();
@@ -111,11 +155,20 @@ public function getde(Request $rq)
 }
 public function getnganhangdethi()
 {
-   $nganh=nganh::select()->get();
-   $monhoc=monhoc::select()->get();
-   $chuong=chuong::select()->get();
-   $cauhoi=cauhoi::select()->get();
-   $dethi=dethi::select()->get();
-   return view('pages.nganhangdethi',compact('nganh','monhoc','chuong','cauhoi','dethi'));
+   if(Session::has('login') && Session::get('login')==true){
+       $nganh=nganh::select()->get();
+       $monhoc=monhoc::select()->get();
+       $chuong=chuong::select()->get();
+       $cauhoi=cauhoi::select()->get();
+       $dethi=dethi::select()->get();
+       return view('pages.nganhangdethi',compact('nganh','monhoc','chuong','cauhoi','dethi'));
+   }
+   else
+    return redirect('login');
 }
+public function getLogin()
+{
+    return view('pages.signIn');
+}
+
 }

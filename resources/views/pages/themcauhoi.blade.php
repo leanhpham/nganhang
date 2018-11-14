@@ -30,22 +30,34 @@
 						</div>
 					</div>
 					<div class="col-sm-6 header-top-right">
-						<div class="list-info">
+						<div class="list-info">						
 							<ul>
+								@if(Session::has('login') && Session::get('login')==true){
 								<li>
-									<a href="#">
-										<i class="fa fa-user-plus top-icon"></i>
-										Sign up
+
+									<a style="color: white;">
+										
+										Xin chào, {{Session::get('name')}}
 										
 									</a>
 								</li>
 								<li>
-									<a href="#">
+									<a href="http://localhost:8080/nganhang/public/logout">
 										<i class="fa fa-lock top-icon"></i>
-										Login
+										Đăng Xuất
 										
 									</a>
 								</li>
+								@else
+								<li>
+									<a href="http://localhost:8080/nganhang/public/login">
+										<i class="fa fa-lock top-icon"></i>
+										Đăng Nhập
+										
+									</a>
+								</li>
+								@endif
+								
 							</ul>
 						</div>
 					</div>
@@ -53,7 +65,7 @@
 			</div>
 		</div>
 	</header>
-		<div class="menu1">
+	<div class="menu1">
 		<ul>
 			<li><a href="index.html">Trang chủ</a></li>
 			<li><a href="http://localhost:8080/nganhang/public/nganhangcauhoi">Ngân hàng câu hỏi</a></li>

@@ -24,3 +24,6 @@ Route::get('taode',['as'=>'taode','uses'=>'PagesController@gettaode']);
 Route::post('taode',['as'=>'taode','uses'=>'PagesController@posttaode']);
 Route::get('de/{id}',['as'=>'de','uses'=>'PagesController@getde']);
 Route::get('nganhangdethi',['as'=>'de','uses'=>'PagesController@getnganhangdethi']);
+Route::get('login',['as'=>'login','uses'=>'PagesController@getlogin']);
+Route::post('login',['as'=>'login','uses'=>'PagesController@postlogin']);
+Route::get('logout',['as'=>'logout','uses'=>'PagesController@postlogout']);
