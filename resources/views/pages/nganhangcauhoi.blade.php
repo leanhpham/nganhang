@@ -140,7 +140,7 @@
 									<div id="t{{$new3->idCH}}" class="thongtin" style="display: none;">
 										<button id="btn3{{$new3->idCH}}" style="float: right;">X</button>
 										<h3>Sửa thông tin</h3>
-										<form action="" method="post">
+										<form action="{{route('suacauhoi')}}" method="post">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 											<input type="text" value="{{$new3->idCH}}" name="idCH"><br>
 											<input type="text" value="{{$new3->noiDungCH}}" name="noidung"><br>

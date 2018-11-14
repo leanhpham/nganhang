@@ -49,7 +49,7 @@ class PagesController extends Controller
     {
         $cauhoi=new cauhoi;
         $cauhoi->where('idCH',$rq->idCH)->update(['noiDungCH'=>$rq->noidung,'ansA'=>$rq->A,'ansB'=>$rq->B,'ansC'=>$rq->C,'ansD'=>$rq->D,'dapAn'=>$rq->dapan]);
-        echo 1;
+       return redirect()->route('nganhangcauhoi');
     }
 
     public function postxoacauhoi(Request $rq)
@@ -57,7 +57,7 @@ class PagesController extends Controller
 
       $cauhoi =cauhoi::select('idCH')->where('idCH',$rq->idCH)->delete();
       
-      echo 1;
+      return view('pages.nganhangcauhoi');
   }
 
   public function gettaode()
@@ -88,18 +88,21 @@ public function posttaode(Request $rq)
  $dethi->soLuong=$rq->socau;
  $dethi->idMH=$rq->mh;
  $dethi->save();
+ $made=$rq->made;
 
- 
  foreach($cauhoi1 as $ch)
  {
     DB::table('chitietdethi')->insert(['idCH' => $ch->idCH, 'idDT' => $rq->made]);
  }
 
- echo 1;
+ return redirect()->route('de',[$made]);
 }
 
-public function getde()
+public function getde(Request $rq)
 {
-   return view('pages.de');
+    $chitietdethi=chitietdethi::select('idCH')->where('idDT',$rq->id)->get();
+    $cauhoi=cauhoi::select()->get();
+
+    return view('pages.de',compact('chitietdethi','cauhoi'));
 }
 }

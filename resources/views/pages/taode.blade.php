@@ -215,9 +215,9 @@
 						<label for="">Chọn số câu hỏi</label>
 						<select name="socau" size="2" class="sl" multiple>
 							<option value="20">20</option>
-							<option value="25">30</option>
-							<option value="30">40</option>
-							<option value="40">50</option>
+							<option value="30">30</option>
+							<option value="40">40</option>
+							<option value="50">50</option>
 						</select>
 						<input type="submit" value="Tạo đề" class="btn">
 					</form>
