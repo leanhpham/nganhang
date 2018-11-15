@@ -67,9 +67,11 @@
 	<div class="menu1">
 		<ul>
 			<li><a href="index.html">Trang chủ</a></li>
-			<li><a class="active" href="http://localhost:8080/nganhang/public/nganhangcauhoi">Ngân hàng câu hỏi</a></li>
+			<li><a class="active"   href="http://localhost:8080/nganhang/public/nganhangcauhoi">Ngân hàng câu hỏi</a></li>
 			<li><a  href="http://localhost:8080/nganhang/public/themcauhoi">Tạo câu hỏi</a></li>
-			<li><a href="http://localhost:8080/nganhang/public/taode">Tạo đề và trộn đề</a></li>
+			<li><a  href="http://localhost:8080/nganhang/public/taode">Tạo và trộn đề</a></li>
+			<li><a href="http://localhost:8080/nganhang/public/taodetheocauhoi">Tạo và trộn đề theo câu hỏi</a></li>
+			<li><a href="http://localhost:8080/nganhang/public/taodetheocautl">Tạo và trộn đề theo câu trả lời</a></li>
 			<li><a href="http://localhost:8080/nganhang/public/nganhangdethi">Ngân hàng đề thi</a></li>
 		</ul>
 	</div>
@@ -126,7 +128,7 @@
 					<ul>
 						@foreach($cauhoi as $new3)
 						@if($new3->idChuong == $new2->idChuong)
-					
+
 						<li>
 							<div class="cauhoi">
 								<div class="row">

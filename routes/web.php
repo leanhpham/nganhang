@@ -31,3 +31,4 @@ Route::get('taodetheocauhoi',['as'=>'taodetheocauhoi','uses'=>'PagesController@g
 Route::post('taodetheocauhoi',['as'=>'tdtch','uses'=>'PagesController@posttaodetch']);
 Route::get('taodetheocautl',['as'=>'taodetheocautl','uses'=>'PagesController@gettaodetctl']);
 Route::post('taodetheocautl',['as'=>'tdttl','uses'=>'PagesController@posttaodetctl']);
+Route::get('index','PagesController@getindex');

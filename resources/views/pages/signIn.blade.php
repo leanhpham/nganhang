@@ -15,7 +15,7 @@
 
 <body class="login-page" style="background: url(img/hinhnen.jpg) center center / cover no-repeat">
     <div class="login-box">
-        <div class="card">
+        <div class="card" style="background:20px;">
             <div class="body">
                 <form action="{{Route('login')}}" method="post" id="sign_in" >
                      <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -36,10 +36,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 p-t-5">
-                        </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-pink waves-effect" style="background: black; color: white;" type="submit">SIGN IN</button>
                         </div>
                     </div>
                 </form>

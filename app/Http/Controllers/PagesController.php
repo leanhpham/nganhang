@@ -40,11 +40,11 @@ class PagesController extends Controller
       }
       else{
 
-        echo 0;
+       return redirect('login');
       }
     }
     else 
-      echo 2;
+      return redirect('login');
   }
   public function postLogout(Request $rq)
   {
@@ -100,10 +100,11 @@ public function posteditcauhoi(Request $rq)
 
 public function postxoacauhoi(Request $rq)
 {
-
+  $chitietdethi=chitietdethi::select('idCH')->where('idCH',$rq->idCH)->delete();
   $cauhoi =cauhoi::select('idCH')->where('idCH',$rq->idCH)->delete();
 
-  return view('pages.nganhangcauhoi');
+
+   return redirect()->route('nganhangcauhoi');
 }
 
 public function gettaode()
@@ -308,5 +309,9 @@ public function posttaodetctl(Request $rq)
     }
   }
   return redirect()->route('de',[$made]);
+}
+public function getindex()
+{
+  return view('pages.index');
 }
 }
